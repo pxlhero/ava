@@ -35,7 +35,7 @@ exports.sanitizers = {
 	posix: str => replaceString(str, '\\', '/'),
 	slow: str => str.replace(/(slow.+?)\(\d+m?s\)/g, '$1 (000ms)'),
 	// TODO: Remove when Node.js 4 support is dropped
-	stacks: str => str.replace(/(\[90m|')t \((.+?\.js:\d+:\d+)\)/g, '$1$2').replace(/Test\.t \[as fn\]/g, 'Test.fn').replace(/null\._onTimeout/g, 'Timeout.setTimeout')
+	stacks: str => str.replace(/(\[90m|')t \((.+?\.js:\d+:\d+)\)/g, '$1$2').replace(/null\._onTimeout/g, 'Timeout.setTimeout')
 };
 
 const run = (type, reporter) => {
