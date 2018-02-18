@@ -14,9 +14,7 @@ const run = type => t => {
 		columns: 200,
 		sanitizers: [report.sanitizers.cwd, report.sanitizers.posix, report.sanitizers.slow, report.sanitizers.stacks]
 	});
-	const reporter = Object.assign(new VerboseReporter({color: true, watching: type === 'watch'}), {
-		stream: tty
-	});
+	const reporter = new VerboseReporter({stream: tty, watching: type === 'watch'});
 	return report[type](reporter)
 		.then(() => {
 			tty.end();

@@ -148,7 +148,6 @@ test('test title prefixes — single file (explicit)', t => {
 	let index;
 
 	const api = apiCreator({
-		explicitTitles: true
 	});
 
 	api.run(files)

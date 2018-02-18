@@ -20,6 +20,14 @@ class TTYStream extends stream.Writable {
 		callback();
 	}
 
+	_writev(chunks, callback) {
+		for (const obj of chunks) {
+			this.chunks.push(Buffer.from(this.sanitizers.reduce((str, sanitizer) => sanitizer(str), obj.chunk.toString('utf8')), 'utf8'));
+		}
+		this.chunks.push(TTYStream.SEPARATOR);
+		callback();
+	}
+
 	asBuffer() {
 		return Buffer.concat(this.chunks);
 	}
